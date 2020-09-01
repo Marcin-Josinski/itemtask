@@ -63,4 +63,4 @@ STATIC_URL = "/static/"
 
 
 SESSION_COOKIE_KEY = "cart_id"
-SESSION_COOKIE_AGE = 259_200  # in seconds = 72 hours
+SESSION_COOKIE_AGE = 60 * 60 * 72  # in seconds = 72 hours

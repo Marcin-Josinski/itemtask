@@ -26,7 +26,7 @@ services:
       python -Wd manage.py runserver 0.0.0.0:8000"
     environment:
       DJANGO_DATABASE_HOST: db
-      DJANGO_SECRET_KEY: '&*^=pydltm3!k4z1yg5hbv(*#v0!jce05k2n$x%aug0o48ejws'
+      DJANGO_SECRET_KEY: secretkey
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123qweasd
