@@ -42,7 +42,9 @@ class Migration(migrations.Migration):
                     "value",
                     models.IntegerField(
                         null=True,
-                        validators=[django.core.validators.MinValueValidator(1)],
+                        validators=[
+                            django.core.validators.MinValueValidator(1),
+                        ],
                     ),
                 ),
                 (

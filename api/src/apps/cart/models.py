@@ -15,7 +15,11 @@ class Item(models.Model):
     external_id = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
     value = models.IntegerField(validators=[MinValueValidator(1)], null=True)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        related_name="items",
+    )
 
     class Meta:
         constraints = [
