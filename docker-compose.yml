@@ -1,0 +1,43 @@
+---
+
+version: "3.7"
+services:
+  db:
+    image: "postgres:12.2-alpine"
+    restart: unless-stopped
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123qweasd
+    ports:
+    - 5432:5432
+
+  api:
+    build:
+      context: ./api
+    restart: unless-stopped
+    depends_on:
+      - db
+    command: bash -c "python manage.py makemigrations &&
+      python manage.py migrate --noinput &&
+      python manage.py collectstatic --noinput &&
+      python -Wd manage.py runserver 0.0.0.0:8000"
+    environment:
+      DJANGO_DATABASE_HOST: db
+      DJANGO_SECRET_KEY: '&*^=pydltm3!k4z1yg5hbv(*#v0!jce05k2n$x%aug0o48ejws'
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123qweasd
+    volumes:
+      - django-static:/var/www/django/static
+      - ./api:/code
+    stdin_open: true
+    tty: true
+    ports:
+      - 8000:8000
+
+volumes:
+  pgdata:
+  django-static:
